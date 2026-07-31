@@ -5,3 +5,6 @@ build/
 .cache/
 *.log
 .env*.local
+playwright-report/
+test-results/
+*playwright*
