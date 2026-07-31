@@ -1,0 +1,37 @@
+import { ByteCursor, formatMac } from '../bytes';
+import { cipherSuiteName, compressionMethodName, tlsVersionName } from './constants';
+import { parseExtensions } from './extensions';
+import type { ServerHelloInfo } from './types';
+
+function formatHex(bytes: Uint8Array): string {
+  return formatMac(bytes);
+}
+
+const MIN_SERVER_HELLO_BYTES = 2 + 32 + 1; // version + random + session_id length byte
+
+export function parseServerHello(body: Uint8Array): ServerHelloInfo | null {
+  if (body.length < MIN_SERVER_HELLO_BYTES) return null;
+
+  const cursor = new ByteCursor(body);
+  const version = tlsVersionName(cursor.u16());
+  const random = formatHex(cursor.slice(32));
+
+  const sessionIdLength = cursor.u8();
+  if (cursor.remaining() < sessionIdLength) return null;
+  const sessionId = sessionIdLength > 0 ? formatHex(cursor.slice(sessionIdLength)) : '(empty)';
+
+  if (cursor.remaining() < 2) return null;
+  const cipherSuite = cipherSuiteName(cursor.u16());
+
+  if (cursor.remaining() < 1) return null;
+  const compressionMethod = compressionMethodName(cursor.u8());
+
+  let extensions = { extensions: [], sni: null, alpn: [], supportedVersions: [] } as ServerHelloInfo['extensions'];
+  if (cursor.remaining() >= 2) {
+    const extensionsLength = cursor.u16();
+    const extensionsBytes = cursor.slice(Math.min(extensionsLength, cursor.remaining()));
+    extensions = parseExtensions(extensionsBytes, false);
+  }
+
+  return { version, random, sessionId, cipherSuite, compressionMethod, extensions };
+}

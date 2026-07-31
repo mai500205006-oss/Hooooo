@@ -1,0 +1,76 @@
+{
+  "graphml_path": "C:\\full\\path\\to\\shaimaa_transforms_windows\\shaimaa_graph.graphml",
+  "python_exe": "C:\\Python39\\python.exe",
+  "timeout_seconds": 12,
+  "max_concurrent_requests": 4,
+  "retry_on_rate_limit": true,
+  "default_confidence": 70,
+  "redact_on_export": false,
+  "output": {
+    "export_mtz": true,
+    "mtz_path": "C:\\full\\path\\to\\shaimaa_transforms_windows\\shaimaa_ai_machine.mtz",
+    "redact_mtz": false
+  },
+  "node_service_map": {
+    "ip": ["ipinfo", "shodan", "abuseipdb", "virustotal", "censys"],
+    "domain": ["whoisxmlapi", "virustotal", "hybrid_analysis"],
+    "email": ["hunter", "virustotal"],
+    "phone": ["numverify"],
+    "facebook_account": ["openai"],
+    "any": ["hybrid_analysis"]
+  },
+  "services": {
+    "ipinfo": {
+      "enabled": true,
+      "type": "ip",
+      "auth": { "method": "query", "key_name": "token", "api_key": "971cf20e8be3d3" },
+      "template": "https://ipinfo.io/{value}/json"
+    },
+    "abuseipdb": {
+      "enabled": true,
+      "type": "ip",
+      "auth": { "method": "header", "header_name": "Key", "api_key": "bf952267e20080fe0bf060509cbeb0d87db0fb3dfe112e8aac1d3d3d5ee37065e27b95bf9b095f1d" },
+      "template": "https://api.abuseipdb.com/api/v2/check?ipAddress={value}&maxAgeInDays=90"
+    },
+    "virustotal": {
+      "enabled": true,
+      "type": "any",
+      "auth": { "method": "header", "header_name": "x-apikey", "api_key": "9b54eeb772a6ab34214bedc8cb8848171d6f90c0bc7a7cba207e37435103bc97" },
+      "templates": {
+        "ip": "https://www.virustotal.com/api/v3/ip_addresses/{value}",
+        "domain": "https://www.virustotal.com/api/v3/domains/{value}",
+        "email": "https://www.virustotal.com/api/v3/attributes/email_addresses/{value}"
+      }
+    },
+    "shodan": {
+      "enabled": true,
+      "type": "ip",
+      "auth": { "method": "query", "key_name": "key", "api_key": "FUtE0qaJEIaKFWhJkVxee44UpUQiTHkI" },
+      "template": "https://api.shodan.io/shodan/host/{value}"
+    },
+    "hunter": {
+      "enabled": true,
+      "type": "email",
+      "auth": { "method": "query", "key_name": "api_key", "api_key": "2f63d713186f51d6e133da6c269eb52c30d8da1b" },
+      "template": "https://api.hunter.io/v2/email-verifier?email={value}"
+    },
+    "numverify": {
+      "enabled": true,
+      "type": "phone",
+      "auth": { "method": "query", "key_name": "access_key", "api_key": "61959c15b154e15722adee946de1c763" },
+      "template": "http://apilayer.net/api/validate?number={value}"
+    },
+    "whoisxmlapi": {
+      "enabled": true,
+      "type": "domain",
+      "auth": { "method": "query", "key_name": "apiKey", "api_key": "at_xyBamDqbBfQarhjx4dCLHL5GRbOON" },
+      "template": "https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey={api_key}&domainName={value}&outputFormat=JSON"
+    },
+    "hybrid_analysis": {
+      "enabled": true,
+      "type": "any",
+      "auth": { "method": "header", "header_name": "api-key", "api_key": "32dourjctm0wsoc88k43g8g88" },
+      "template": "https://www.hybrid-analysis.com/api/v2/search/hash"
+    }
+  }
+}

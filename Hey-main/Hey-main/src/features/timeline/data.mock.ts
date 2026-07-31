@@ -1,0 +1,68 @@
+import type { TimelineEvent } from './types';
+
+export const mockTimelineEvents: TimelineEvent[] = [
+  {
+    id: 't1',
+    title: 'Investigation #204 opened',
+    description: 'Login anomaly flagged from an unusual IP range and opened as a new case.',
+    type: 'Investigation',
+    severity: 'warning',
+    occurredAt: '2026-07-20T09:12:00.000Z',
+  },
+  {
+    id: 't2',
+    title: 'Unusual outbound connection detected',
+    description: 'A short-lived TCP session to a previously unseen external host was captured.',
+    type: 'Network',
+    severity: 'warning',
+    occurredAt: '2026-07-20T09:15:00.000Z',
+  },
+  {
+    id: 't3',
+    title: 'Certificate expiry warning',
+    description: 'An internal service certificate is due to expire within 14 days.',
+    type: 'Alert',
+    severity: 'critical',
+    occurredAt: '2026-07-21T07:40:00.000Z',
+  },
+  {
+    id: 't4',
+    title: 'Note added to Investigation #204',
+    description: 'Analyst attached access-log correlation notes to the case file.',
+    type: 'Note',
+    severity: 'info',
+    occurredAt: '2026-07-21T14:05:00.000Z',
+  },
+  {
+    id: 't5',
+    title: 'Plugin registry updated',
+    description: 'Reports and OSINT plugins registered successfully with no id collisions.',
+    type: 'System',
+    severity: 'info',
+    occurredAt: '2026-07-22T08:00:00.000Z',
+  },
+  {
+    id: 't6',
+    title: 'Investigation #204 closed',
+    description: 'Findings reviewed and case closed with no further action required.',
+    type: 'Investigation',
+    severity: 'info',
+    occurredAt: '2026-07-22T16:30:00.000Z',
+  },
+  {
+    id: 't7',
+    title: 'SSDP broadcast spike',
+    description: 'Higher than usual SSDP discovery traffic observed on the lab network.',
+    type: 'Network',
+    severity: 'info',
+    occurredAt: '2026-07-23T10:20:00.000Z',
+  },
+  {
+    id: 't8',
+    title: 'Local backup exported',
+    description: 'All local workspace data was exported as a backup file from Settings.',
+    type: 'System',
+    severity: 'info',
+    occurredAt: '2026-07-24T18:45:00.000Z',
+  },
+];

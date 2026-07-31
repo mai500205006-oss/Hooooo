@@ -1,0 +1,72 @@
+import type { Evidence } from './types';
+
+export const mockEvidence: Evidence[] = [
+  {
+    id: 'ev1',
+    title: 'auth.log excerpt',
+    type: 'log',
+    description: 'Authentication log excerpt showing failed login attempts from 203.0.113.14.',
+    tags: ['login-anomaly', 'case-204'],
+    collectedAt: '2026-07-20T09:20:00.000Z',
+    custody: [
+      { id: 'cc1', action: 'Collected from host', handler: 'Zozo', timestamp: '2026-07-20T09:20:00.000Z' },
+      { id: 'cc2', action: 'Copied to case file', handler: 'Zozo', timestamp: '2026-07-20T09:25:00.000Z' },
+    ],
+    attachments: [{ id: 'a1', name: 'auth.log', sizeLabel: '18 KB', kind: 'document' }],
+  },
+  {
+    id: 'ev2',
+    title: 'Login capture.pcapng',
+    type: 'network',
+    description: 'Packet capture spanning the anomaly window on 192.168.1.0/24.',
+    tags: ['login-anomaly', 'case-204', 'pcap'],
+    collectedAt: '2026-07-20T09:30:00.000Z',
+    custody: [
+      { id: 'cc3', action: 'Captured on lab switch span port', handler: 'Zozo', timestamp: '2026-07-20T09:30:00.000Z' },
+      { id: 'cc4', action: 'Archived to evidence locker', handler: 'Zozo', timestamp: '2026-07-20T10:00:00.000Z' },
+    ],
+    attachments: [{ id: 'a2', name: 'login-capture.pcapng', sizeLabel: '4.2 MB', kind: 'capture' }],
+  },
+  {
+    id: 'ev3',
+    title: 'Beacon traffic capture',
+    type: 'network',
+    description: 'Periodic outbound TCP sessions to an unfamiliar external host.',
+    tags: ['case-211', 'beacon'],
+    collectedAt: '2026-07-23T11:15:00.000Z',
+    custody: [{ id: 'cc5', action: 'Captured during triage', handler: 'Zozo', timestamp: '2026-07-23T11:15:00.000Z' }],
+    attachments: [{ id: 'a3', name: 'beacon-traffic.pcap', sizeLabel: '1.1 MB', kind: 'capture' }],
+  },
+  {
+    id: 'ev4',
+    title: 'Suspicious process screenshot',
+    type: 'screenshot',
+    description: 'Screenshot of an unexpected process observed during host review.',
+    tags: ['case-211'],
+    collectedAt: '2026-07-23T11:45:00.000Z',
+    custody: [{ id: 'cc6', action: 'Captured from host screen', handler: 'Zozo', timestamp: '2026-07-23T11:45:00.000Z' }],
+    attachments: [{ id: 'a4', name: 'process-list.png', sizeLabel: '340 KB', kind: 'image' }],
+  },
+  {
+    id: 'ev5',
+    title: 'Certificate chain export',
+    type: 'file',
+    description: 'Exported certificate chain for the service nearing expiry.',
+    tags: ['case-218', 'tls'],
+    collectedAt: '2026-07-21T07:45:00.000Z',
+    custody: [{ id: 'cc7', action: 'Exported via openssl', handler: 'Zozo', timestamp: '2026-07-21T07:45:00.000Z' }],
+    attachments: [{ id: 'a5', name: 'cert-chain.txt', sizeLabel: '6 KB', kind: 'document' }],
+  },
+  {
+    id: 'ev6',
+    title: 'Backup USB drive',
+    type: 'physical',
+    description: 'Physical USB drive containing a full workspace backup, logged for safekeeping.',
+    tags: ['backup'],
+    collectedAt: '2026-07-24T18:50:00.000Z',
+    custody: [
+      { id: 'cc8', action: 'Logged into evidence locker', handler: 'Zozo', timestamp: '2026-07-24T18:50:00.000Z' },
+    ],
+    attachments: [],
+  },
+];

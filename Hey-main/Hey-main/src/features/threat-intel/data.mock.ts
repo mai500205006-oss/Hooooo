@@ -1,0 +1,92 @@
+import type { ThreatEntry } from './types';
+
+export const mockThreatFeed: ThreatEntry[] = [
+  {
+    id: 'th1',
+    title: 'Credential-stuffing wave targeting exposed login panels',
+    summary: 'A coordinated wave of login attempts from a shared IP range, matching Case #204 activity.',
+    severity: 'high',
+    confidence: 'high',
+    source: 'Internal',
+    actor: {
+      name: 'UNC-Scan41',
+      aliases: ['ScanCrew41'],
+      description: 'Opportunistic actor known for large-scale credential-stuffing campaigns against small networks.',
+    },
+    malwareFamily: {
+      name: 'None observed',
+      description: 'No malware payload identified — attack limited to automated login attempts.',
+    },
+    relatedIocs: [{ id: 'ioc1', value: '203.0.113.14', type: 'ip' }],
+    publishedAt: '2026-07-20T09:30:00.000Z',
+  },
+  {
+    id: 'th2',
+    title: 'New C2 infrastructure linked to beaconing malware family',
+    summary: 'Domain and hash pairing observed matches infrastructure reused by a known beacon loader.',
+    severity: 'critical',
+    confidence: 'high',
+    source: 'Vendor Feed',
+    actor: {
+      name: 'Quiet Ferret',
+      aliases: ['APT-QF'],
+      description: 'Financially motivated group known for long-dwell beaconing implants in small business networks.',
+    },
+    malwareFamily: {
+      name: 'FerretBeacon',
+      description: 'Lightweight beaconing implant that checks in with C2 every 60 seconds over HTTPS.',
+    },
+    relatedIocs: [
+      { id: 'ioc2', value: 'malicious-update[.]net', type: 'domain' },
+      { id: 'ioc4', value: '9f4d1a3c8b2e...c7a1', type: 'hash' },
+    ],
+    publishedAt: '2026-07-23T12:00:00.000Z',
+  },
+  {
+    id: 'th3',
+    title: 'Phishing kit reused across small-business billing lures',
+    summary: 'Sender pattern matches a phishing kit previously reported by community feeds.',
+    severity: 'medium',
+    confidence: 'medium',
+    source: 'Community Feed',
+    actor: {
+      name: 'Unknown',
+      aliases: [],
+      description: 'No specific actor attributed — kit is shared/sold among multiple low-tier phishing operators.',
+    },
+    malwareFamily: {
+      name: 'None',
+      description: 'Credential-harvesting page only, no malware payload delivered.',
+    },
+    relatedIocs: [{ id: 'ioc5', value: 'no-reply@fake-billing-support.com', type: 'email' }],
+    publishedAt: '2026-07-18T13:20:00.000Z',
+  },
+  {
+    id: 'th4',
+    title: 'Recon scanning from previously flagged range, now quiet',
+    summary: 'Historical scanning source with no activity in the last 30 days.',
+    severity: 'low',
+    confidence: 'medium',
+    source: 'OSINT',
+    actor: {
+      name: 'Unattributed scanner',
+      aliases: [],
+      description: 'Likely automated internet-wide scanning, not targeted.',
+    },
+    malwareFamily: { name: 'None', description: 'No payload associated with this activity.' },
+    relatedIocs: [{ id: 'ioc6', value: '198.51.100.23', type: 'ip' }],
+    publishedAt: '2026-06-15T08:30:00.000Z',
+  },
+  {
+    id: 'th5',
+    title: 'Suspicious CDN-mirror domain sharing infra with watchlist hosts',
+    summary: 'Newly registered domain resolves to IP space shared with previously flagged infrastructure.',
+    severity: 'medium',
+    confidence: 'low',
+    source: 'Honeypot',
+    actor: { name: 'Unknown', aliases: [], description: 'Insufficient data to attribute to a known actor.' },
+    malwareFamily: { name: 'Unknown', description: 'No payload captured yet — monitoring only.' },
+    relatedIocs: [{ id: 'ioc7', value: 'update-cdn-mirror[.]org', type: 'domain' }],
+    publishedAt: '2026-07-24T11:00:00.000Z',
+  },
+];
