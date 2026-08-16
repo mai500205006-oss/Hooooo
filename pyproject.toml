@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "redking"
+version = "0.1.0"
+description = "Red King - personal experimental remediation validation platform (foundation)"
+authors = ["mai500205006 <>"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+fastapi = "^0.95.0"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+SQLAlchemy = "^2.0"
+asyncpg = "^0.27.0"
+alembic = "^1.11.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
