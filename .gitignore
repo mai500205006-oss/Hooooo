@@ -1,3 +1,6 @@
+# Local ignore for Red King foundation
+
+# existing entries preserved
 node_modules/
 dist/
 build/
@@ -9,3 +12,32 @@ playwright-report/
 test-results/
 *playwright*
 .venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Env
+.env
+
+# Virtualenvs
+.venv/
+venv/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Editor
+.vscode/
+
+# Local data/evidence
+/data/
+
+# pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
